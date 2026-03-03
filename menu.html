@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Catering-Gemak</title>
+    <meta name="description" content="Bekijk ons complete menu: BBQ, buffetten, high tea, vergaderpakketten, soepen, salades en meer. Catering-Gemak Ravenstein.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&family=Playfair+Display+SC:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#DC2626', 'primary-light': '#F87171', cta: '#CA8A04', 'cta-hover': '#A16207',
+                        bg: '#FEF2F2', 'bg-dark': '#450A0A',
+                    },
+                    fontFamily: { display: ['Playfair Display SC', 'serif'], sans: ['Karla', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .scroll-reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
+        .menu-item { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .menu-item:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(220,38,38,0.12); }
+        .hamburger-line { transition: all 0.3s ease; }
+        .menu-open .hamburger-line:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .menu-open .hamburger-line:nth-child(2) { opacity: 0; }
+        .menu-open .hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+        .category-nav a { transition: all 0.2s ease; }
+        .category-nav a:hover, .category-nav a.active { background-color: #DC2626; color: white; }
+        @media (prefers-reduced-motion: reduce) { .scroll-reveal { opacity: 1; transform: none; transition: none; } .menu-item { transition: none; } }
+    </style>
+</head>
+<body class="font-sans bg-bg text-bg-dark">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
+            <a href="index.html" class="flex items-center gap-3"><img src="images/logo.png" alt="Catering-Gemak logo" class="h-10 md:h-14 w-auto"></a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="text-bg-dark font-semibold hover:text-primary transition-colors duration-200 cursor-pointer">Home</a>
+                <a href="ons-dna.html" class="text-bg-dark font-semibold hover:text-primary transition-colors duration-200 cursor-pointer">Ons DNA</a>
+                <a href="menu.html" class="text-primary font-semibold cursor-pointer">Menu</a>
+                <a href="contact.html" class="text-bg-dark font-semibold hover:text-primary transition-colors duration-200 cursor-pointer">Contact</a>
+                <a href="contact.html" class="bg-cta text-white px-6 py-2.5 rounded-full font-bold cursor-pointer hover:bg-cta-hover transition-all duration-200">Offerte aanvragen</a>
+            </div>
+            <button id="menuBtn" class="md:hidden flex flex-col gap-1.5 cursor-pointer p-2 min-h-[44px] min-w-[44px] items-center justify-center" aria-label="Menu">
+                <span class="hamburger-line block w-6 h-0.5 bg-bg-dark"></span><span class="hamburger-line block w-6 h-0.5 bg-bg-dark"></span><span class="hamburger-line block w-6 h-0.5 bg-bg-dark"></span>
+            </button>
+        </div>
+    </nav>
+    <div id="mobileMenu" class="fixed inset-0 z-40 bg-white hidden flex-col items-center justify-center gap-8">
+        <a href="index.html" class="text-2xl font-display font-bold text-bg-dark cursor-pointer">Home</a>
+        <a href="ons-dna.html" class="text-2xl font-display font-bold text-bg-dark cursor-pointer">Ons DNA</a>
+        <a href="menu.html" class="text-2xl font-display font-bold text-primary cursor-pointer">Menu</a>
+        <a href="contact.html" class="text-2xl font-display font-bold text-bg-dark cursor-pointer">Contact</a>
+        <a href="contact.html" class="bg-cta text-white px-8 py-3 rounded-full text-xl font-bold cursor-pointer">Offerte aanvragen</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="pt-24 md:pt-32 pb-8 md:pb-12">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <h1 class="font-display text-4xl md:text-6xl font-bold mb-4">Ons Menu</h1>
+            <p class="text-xl text-bg-dark/70 max-w-3xl mb-8">Alle getoonde prijzen zijn inclusief BTW. Levertijden in overleg.</p>
+            <!-- Category nav -->
+            <div class="category-nav flex flex-wrap gap-2">
+                <a href="#bbq" class="px-4 py-2 rounded-full bg-white border border-bg-dark/20 font-semibold text-sm cursor-pointer min-h-[44px] flex items-center">BBQ</a>
+                <a href="#buffetten" class="px-4 py-2 rounded-full bg-white border border-bg-dark/20 font-semibold text-sm cursor-pointer min-h-[44px] flex items-center">Buffetten</a>
+                <a href="#hightea" class="px-4 py-2 rounded-full bg-white border border-bg-dark/20 font-semibold text-sm cursor-pointer min-h-[44px] flex items-center">High Tea</a>
+                <a href="#vergaderen" class="px-4 py-2 rounded-full bg-white border border-bg-dark/20 font-semibold text-sm cursor-pointer min-h-[44px] flex items-center">Vergaderen</a>
+                <a href="#soepen" class="px-4 py-2 rounded-full bg-white border border-bg-dark/20 font-semibold text-sm cursor-pointer min-h-[44px] flex items-center">Soepen</a>
+                <a href="#salades" class="px-4 py-2 rounded-full bg-white border border-bg-dark/20 font-semibold text-sm cursor-pointer min-h-[44px] flex items-center">Salades</a>
+                <a href="#stamppot" class="px-4 py-2 rounded-full bg-white border border-bg-dark/20 font-semibold text-sm cursor-pointer min-h-[44px] flex items-center">Stamppot</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BBQ -->
+    <section id="bbq" class="py-12 md:py-16 scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-2">BBQ</h2>
+            <p class="text-bg-dark/70 mb-8">Het beste vlees, de lekkerste sausjes en heerlijk knapperig stokbrood. Bij bestelling vanaf 15 personen inclusief barbeque, bezorging gratis binnen 20 km, borden en bestek.</p>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-md">
+                    <img src="images/bbq-deluxe.jpg" alt="BBQ Deluxe" class="w-full aspect-square object-cover" loading="lazy">
+                    <div class="p-5"><h3 class="font-bold text-lg mb-1">BBQ Deluxe</h3><p class="text-primary font-bold text-xl">€19,50 <span class="text-sm font-normal text-bg-dark/60">p.p.</span></p><p class="text-sm text-bg-dark/60 mt-2">Vanaf 5 personen. Vuil retour +€1,00 p.p.</p></div>
+                </div>
+                <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-md">
+                    <div class="w-full aspect-square bg-gradient-to-br from-primary/10 to-cta/10 flex items-center justify-center"><svg class="w-16 h-16 text-primary/30" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/></svg></div>
+                    <div class="p-5"><h3 class="font-bold text-lg mb-1">BBQ Standaard Plus</h3><p class="text-sm text-bg-dark/60 mt-1">Neem contact op voor prijs</p></div>
+                </div>
+                <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-md">
+                    <div class="w-full aspect-square bg-gradient-to-br from-primary/10 to-cta/10 flex items-center justify-center"><svg class="w-16 h-16 text-primary/30" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/></svg></div>
+                    <div class="p-5"><h3 class="font-bold text-lg mb-1">BBQ Standaard</h3><p class="text-sm text-bg-dark/60 mt-1">Neem contact op voor prijs</p></div>
+                </div>
+                <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-md">
+                    <div class="w-full aspect-square bg-gradient-to-br from-primary/10 to-cta/10 flex items-center justify-center"><svg class="w-16 h-16 text-primary/30" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/></svg></div>
+                    <div class="p-5"><h3 class="font-bold text-lg mb-1">BBQ Kinderpakket</h3><p class="text-sm text-bg-dark/60 mt-1">Neem contact op voor prijs</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buffetten -->
+    <section id="buffetten" class="py-12 md:py-16 bg-white scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-2">Buffetten</h2>
+            <p class="text-bg-dark/70 mb-8">Warme en koude buffetten, vernoemd naar Nederlandse meesters. Vanaf 15 personen, inclusief borden, bestek en gratis bezorging binnen 20 km.</p>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                <div class="menu-item bg-bg rounded-2xl overflow-hidden shadow-md">
+                    <img src="images/buffet1.jpg" alt="Buffet Rembrandt" class="w-full aspect-square object-cover" loading="lazy">
+                    <div class="p-5"><h3 class="font-bold text-lg mb-1">Buffet Rembrandt</h3><p class="text-primary font-bold text-xl">€27,50 <span class="text-sm font-normal text-bg-dark/60">p.p.</span></p><p class="text-xs text-bg-dark/60 mt-2">Rundvleessalade, varkenshaas, biefstuk stroganoff, gebakken aardappeltjes</p></div>
+                </div>
+                <div class="menu-item bg-bg rounded-2xl overflow-hidden shadow-md">
+                    <img src="images/buffet2.jpg" alt="Buffet Mondriaan" class="w-full aspect-square object-cover" loading="lazy">
+                    <div class="p-5"><h3 class="font-bold text-lg mb-1">Buffet Mondriaan</h3><p class="text-sm text-bg-dark/60 mt-1">Neem contact op voor prijs</p></div>
+                </div>
+                <div class="menu-item bg-bg rounded-2xl overflow-hidden shadow-md">
+                    <div class="w-full aspect-square bg-gradient-to-br from-primary/10 to-cta/10 flex items-center justify-center"><svg class="w-16 h-16 text-primary/30" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.87c1.355 0 2.697.055 4.024.165C17.155 8.51 18 9.473 18 10.608v2.513m-3-4.87v-1.5m-6 1.5v-1.5m12 9.75l-1.5.75a3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0L3 16.5m15-3.38a48.474 48.474 0 00-6-.37c-2.032 0-4.034.126-6 .37m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.17c0 .62-.504 1.124-1.125 1.124H4.125A1.125 1.125 0 013 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 016 13.12M12.265 3.11a.375.375 0 11-.53 0L12 2.845l.265.265z"/></svg></div>
+                    <div class="p-5"><h3 class="font-bold text-lg mb-1">Buffet Van Gogh</h3><p class="text-sm text-bg-dark/60 mt-1">Neem contact op voor prijs</p></div>
+                </div>
+                <div class="menu-item bg-bg rounded-2xl overflow-hidden shadow-md">
+                    <div class="w-full aspect-square bg-gradient-to-br from-primary/10 to-cta/10 flex items-center justify-center"><svg class="w-16 h-16 text-primary/30" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.87c1.355 0 2.697.055 4.024.165C17.155 8.51 18 9.473 18 10.608v2.513m-3-4.87v-1.5m-6 1.5v-1.5m12 9.75l-1.5.75a3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0L3 16.5m15-3.38a48.474 48.474 0 00-6-.37c-2.032 0-4.034.126-6 .37m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.17c0 .62-.504 1.124-1.125 1.124H4.125A1.125 1.125 0 013 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 016 13.12M12.265 3.11a.375.375 0 11-.53 0L12 2.845l.265.265z"/></svg></div>
+                    <div class="p-5"><h3 class="font-bold text-lg mb-1">Buffet Rubens</h3><p class="text-sm text-bg-dark/60 mt-1">Neem contact op voor prijs</p></div>
+                </div>
+                <div class="menu-item bg-bg rounded-2xl overflow-hidden shadow-md">
+                    <div class="w-full aspect-square bg-gradient-to-br from-primary/10 to-cta/10 flex items-center justify-center"><svg class="w-16 h-16 text-primary/30" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.87c1.355 0 2.697.055 4.024.165C17.155 8.51 18 9.473 18 10.608v2.513m-3-4.87v-1.5m-6 1.5v-1.5m12 9.75l-1.5.75a3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0L3 16.5m15-3.38a48.474 48.474 0 00-6-.37c-2.032 0-4.034.126-6 .37m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.17c0 .62-.504 1.124-1.125 1.124H4.125A1.125 1.125 0 013 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 016 13.12M12.265 3.11a.375.375 0 11-.53 0L12 2.845l.265.265z"/></svg></div>
+                    <div class="p-5"><h3 class="font-bold text-lg mb-1">Buffet Vermeer</h3><p class="text-sm text-bg-dark/60 mt-1">Neem contact op voor prijs</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- High Tea -->
+    <section id="hightea" class="py-12 md:py-16 scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-2">High Tea</h2>
+            <p class="text-bg-dark/70 mb-8">Een uitgebreide high tea bezorgd bij u thuis of op locatie.</p>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-md">
+                    <img src="images/hightea1.jpg" alt="High Tea London" class="w-full aspect-square object-cover" loading="lazy">
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-1">High Tea "London"</h3>
+                        <p class="text-primary font-bold text-xl">€27,50 <span class="text-sm font-normal text-bg-dark/60">p.p.</span></p>
+                        <p class="text-xs text-bg-dark/60 mt-2">5 smaken thee, scones, muffin, club sandwich, brownie, carrot cake, carpaccio, verse aardbeien</p>
+                    </div>
+                </div>
+                <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-md">
+                    <img src="images/hightea2.jpg" alt="High Tea Liverpool" class="w-full aspect-square object-cover" loading="lazy">
+                    <div class="p-5"><h3 class="font-bold text-lg mb-1">High Tea "Liverpool"</h3><p class="text-sm text-bg-dark/60 mt-1">Neem contact op voor prijs</p></div>
+                </div>
+                <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-md">
+                    <div class="w-full aspect-square bg-gradient-to-br from-primary/10 to-cta/10 flex items-center justify-center"><svg class="w-16 h-16 text-primary/30" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.87c1.355 0 2.697.055 4.024.165C17.155 8.51 18 9.473 18 10.608v2.513m-3-4.87v-1.5m-6 1.5v-1.5m12 9.75l-1.5.75a3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0L3 16.5m15-3.38a48.474 48.474 0 00-6-.37c-2.032 0-4.034.126-6 .37m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.17c0 .62-.504 1.124-1.125 1.124H4.125A1.125 1.125 0 013 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 016 13.12M12.265 3.11a.375.375 0 11-.53 0L12 2.845l.265.265z"/></svg></div>
+                    <div class="p-5"><h3 class="font-bold text-lg mb-1">High Tea "Belfast"</h3><p class="text-sm text-bg-dark/60 mt-1">Neem contact op voor prijs</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vergaderpakketten -->
+    <section id="vergaderen" class="py-12 md:py-16 bg-white scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-2">Vergaderpakketten</h2>
+            <p class="text-bg-dark/70 mb-8">Dagelijks verse broodjes voor uw vergadering. Van eenvoudig tot luxe.</p>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="menu-item bg-bg rounded-2xl overflow-hidden shadow-md">
+                    <img src="images/broodje-luxe.jpg" alt="Vergaderpakket Luxe" class="w-full aspect-square object-cover" loading="lazy">
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-1">Vergaderpakket Luxe</h3>
+                        <p class="text-primary font-bold text-xl">€43,50</p>
+                        <p class="text-xs text-bg-dark/60 mt-2">Zalm, buffelmozzarella, carpaccio, geitenkaas, rosbief op verse bollen</p>
+                    </div>
+                </div>
+                <div class="menu-item bg-bg rounded-2xl overflow-hidden shadow-md">
+                    <div class="w-full aspect-square bg-gradient-to-br from-primary/10 to-cta/10 flex items-center justify-center"><svg class="w-16 h-16 text-primary/30" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg></div>
+                    <div class="p-5"><h3 class="font-bold text-lg mb-1">Vergaderpakket Vlees</h3><p class="text-sm text-bg-dark/60">Neem contact op voor prijs</p></div>
+                </div>
+                <div class="menu-item bg-bg rounded-2xl overflow-hidden shadow-md">
+                    <div class="w-full aspect-square bg-gradient-to-br from-primary/10 to-cta/10 flex items-center justify-center"><svg class="w-16 h-16 text-primary/30" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg></div>
+                    <div class="p-5"><h3 class="font-bold text-lg mb-1">Vergaderpakket Vis</h3><p class="text-sm text-bg-dark/60">Neem contact op voor prijs</p></div>
+                </div>
+                <div class="menu-item bg-bg rounded-2xl overflow-hidden shadow-md">
+                    <div class="w-full aspect-square bg-gradient-to-br from-primary/10 to-cta/10 flex items-center justify-center"><svg class="w-16 h-16 text-primary/30" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg></div>
+                    <div class="p-5"><h3 class="font-bold text-lg mb-1">Vergaderpakket Vegetarisch</h3><p class="text-sm text-bg-dark/60">Neem contact op voor prijs</p></div>
+                </div>
+                <div class="menu-item bg-bg rounded-2xl overflow-hidden shadow-md">
+                    <div class="w-full aspect-square bg-gradient-to-br from-primary/10 to-cta/10 flex items-center justify-center"><svg class="w-16 h-16 text-primary/30" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg></div>
+                    <div class="p-5"><h3 class="font-bold text-lg mb-1">Vergaderpakket Ham & Kaas</h3><p class="text-sm text-bg-dark/60">Neem contact op voor prijs</p></div>
+                </div>
+                <div class="menu-item bg-bg rounded-2xl overflow-hidden shadow-md">
+                    <div class="w-full aspect-square bg-gradient-to-br from-primary/10 to-cta/10 flex items-center justify-center"><svg class="w-16 h-16 text-primary/30" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg></div>
+                    <div class="p-5"><h3 class="font-bold text-lg mb-1">Vergaderpakket Ham & Kaas Luxe</h3><p class="text-sm text-bg-dark/60">Neem contact op voor prijs</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Soepen -->
+    <section id="soepen" class="py-12 md:py-16 scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-2">Huisgemaakte Soepen</h2>
+            <p class="text-bg-dark/70 mb-8">Overheerlijke huisgemaakte soep, vers bereid in onze eigen keuken.</p>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div class="menu-item bg-white rounded-2xl p-5 shadow-md text-center">
+                    <img src="images/soup-product.jpg" alt="Soep" class="w-20 h-20 rounded-full mx-auto mb-3 object-cover" loading="lazy">
+                    <h3 class="font-bold text-sm">Tomatensoep</h3>
+                </div>
+                <div class="menu-item bg-white rounded-2xl p-5 shadow-md text-center">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-3 bg-gradient-to-br from-green-100 to-green-200"></div>
+                    <h3 class="font-bold text-sm">Groentesoep</h3>
+                </div>
+                <div class="menu-item bg-white rounded-2xl p-5 shadow-md text-center">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-3 bg-gradient-to-br from-yellow-100 to-yellow-200"></div>
+                    <h3 class="font-bold text-sm">Kippensoep</h3>
+                </div>
+                <div class="menu-item bg-white rounded-2xl p-5 shadow-md text-center">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-3 bg-gradient-to-br from-orange-100 to-orange-200"></div>
+                    <h3 class="font-bold text-sm">Pompoensoep</h3>
+                </div>
+                <div class="menu-item bg-white rounded-2xl p-5 shadow-md text-center">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-3 bg-gradient-to-br from-green-100 to-green-300"></div>
+                    <h3 class="font-bold text-sm">Erwtensoep</h3>
+                </div>
+                <div class="menu-item bg-white rounded-2xl p-5 shadow-md text-center">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-3 bg-gradient-to-br from-amber-100 to-amber-200"></div>
+                    <h3 class="font-bold text-sm">Champignonsoep</h3>
+                </div>
+                <div class="menu-item bg-white rounded-2xl p-5 shadow-md text-center">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-3 bg-gradient-to-br from-red-100 to-red-200"></div>
+                    <h3 class="font-bold text-sm">Paprika-roomsoep</h3>
+                </div>
+                <div class="menu-item bg-white rounded-2xl p-5 shadow-md text-center">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-3 bg-gradient-to-br from-amber-100 to-amber-300"></div>
+                    <h3 class="font-bold text-sm">Rundvleessoep</h3>
+                </div>
+                <div class="menu-item bg-white rounded-2xl p-5 shadow-md text-center">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-3 bg-gradient-to-br from-green-100 to-lime-200"></div>
+                    <h3 class="font-bold text-sm">Courgettesoep</h3>
+                </div>
+                <div class="menu-item bg-white rounded-2xl p-5 shadow-md text-center">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-3 bg-gradient-to-br from-red-100 to-orange-200"></div>
+                    <h3 class="font-bold text-sm">Tomaat-Groente</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Salades -->
+    <section id="salades" class="py-12 md:py-16 bg-white scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-2">Salades</h2>
+            <p class="text-bg-dark/70 mb-8">Verse salades: vlees, vis of vegetarisch.</p>
+            <div class="grid sm:grid-cols-3 gap-6">
+                <div class="menu-item bg-bg rounded-2xl overflow-hidden shadow-md">
+                    <img src="images/salade-vlees.jpg" alt="Salade vlees" class="w-full aspect-square object-cover" loading="lazy">
+                    <div class="p-5"><h3 class="font-bold text-lg">Salade Vlees</h3></div>
+                </div>
+                <div class="menu-item bg-bg rounded-2xl overflow-hidden shadow-md">
+                    <div class="w-full aspect-square bg-gradient-to-br from-blue-50 to-cyan-100 flex items-center justify-center"><svg class="w-16 h-16 text-primary/30" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.87c1.355 0 2.697.055 4.024.165C17.155 8.51 18 9.473 18 10.608v2.513"/></svg></div>
+                    <div class="p-5"><h3 class="font-bold text-lg">Salade Vis</h3></div>
+                </div>
+                <div class="menu-item bg-bg rounded-2xl overflow-hidden shadow-md">
+                    <div class="w-full aspect-square bg-gradient-to-br from-green-50 to-emerald-100 flex items-center justify-center"><svg class="w-16 h-16 text-primary/30" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.87c1.355 0 2.697.055 4.024.165C17.155 8.51 18 9.473 18 10.608v2.513"/></svg></div>
+                    <div class="p-5"><h3 class="font-bold text-lg">Salade Vegetarisch</h3></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stamppot -->
+    <section id="stamppot" class="py-12 md:py-16 scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-2">Stamppot Buffet</h2>
+            <p class="text-bg-dark/70 mb-8">Stamppot buffet "Hollands Glorie" — de ultieme winterklassieker.</p>
+            <div class="max-w-md">
+                <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-md">
+                    <img src="images/stamppot.jpg" alt="Stamppot buffet Hollands Glorie" class="w-full aspect-square object-cover" loading="lazy">
+                    <div class="p-5"><h3 class="font-bold text-lg mb-1">Stamppot "Hollands Glorie"</h3><p class="text-sm text-bg-dark/60">Neem contact op voor prijs en beschikbaarheid</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extra -->
+    <section class="py-12 md:py-16 bg-white scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-2">Extra's</h2>
+            <p class="text-bg-dark/70 mb-8">Aanvullingen bij uw bestelling.</p>
+            <div class="grid sm:grid-cols-2 gap-6 max-w-2xl">
+                <div class="menu-item bg-bg rounded-2xl overflow-hidden shadow-md">
+                    <img src="images/fruit.jpg" alt="Vers fruit" class="w-full aspect-square object-cover" loading="lazy">
+                    <div class="p-5"><h3 class="font-bold text-lg">Vers Fruit</h3></div>
+                </div>
+                <div class="menu-item bg-bg rounded-2xl overflow-hidden shadow-md">
+                    <div class="w-full aspect-square bg-gradient-to-br from-pink-50 to-red-100 flex items-center justify-center"><svg class="w-16 h-16 text-primary/30" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.87c1.355 0 2.697.055 4.024.165C17.155 8.51 18 9.473 18 10.608v2.513"/></svg></div>
+                    <div class="p-5"><h3 class="font-bold text-lg">Bakje Fruitsalade</h3></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 md:py-24 bg-primary text-white text-center">
+        <div class="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
+            <h2 class="font-display text-3xl md:text-5xl font-bold mb-6">Offerte op maat?</h2>
+            <p class="text-xl mb-10 opacity-90">Bel met 06-20380959 of mail naar info@catering-gemak.nl voor een vrijblijvende offerte.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="tel:0620380959" class="bg-cta text-white px-8 py-4 rounded-full text-lg font-bold cursor-pointer hover:bg-cta-hover transition-all duration-200 inline-block">Bel nu</a>
+                <a href="contact.html" class="bg-white text-primary px-8 py-4 rounded-full text-lg font-bold cursor-pointer hover:bg-gray-100 transition-all duration-200 inline-block">Contact</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-bg-dark text-white py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-12">
+                <div><img src="images/logo.png" alt="Catering-Gemak" class="h-12 mb-4 brightness-0 invert"><p class="text-white/70">Klassiekers met een twist. 7 dagen per week bezorgd.</p></div>
+                <div><h3 class="font-display text-lg font-bold mb-4 text-cta">Navigatie</h3><ul class="space-y-2 text-white/70"><li><a href="index.html" class="hover:text-white transition-colors duration-200 cursor-pointer">Home</a></li><li><a href="ons-dna.html" class="hover:text-white transition-colors duration-200 cursor-pointer">Ons DNA</a></li><li><a href="menu.html" class="hover:text-white transition-colors duration-200 cursor-pointer">Menu</a></li><li><a href="contact.html" class="hover:text-white transition-colors duration-200 cursor-pointer">Contact</a></li></ul></div>
+                <div><h3 class="font-display text-lg font-bold mb-4 text-cta">Contact</h3><ul class="space-y-2 text-white/70"><li><a href="tel:0620380959" class="hover:text-white transition-colors duration-200 cursor-pointer">06-20380959</a></li><li><a href="mailto:info@catering-gemak.nl" class="hover:text-white transition-colors duration-200 cursor-pointer">info@catering-gemak.nl</a></li><li>De Hammen 13, 5371 MK Ravenstein</li><li>KvK: 64827011</li></ul></div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-white/10 text-center text-white/50 text-sm"><p>&copy; 2026 Catering-Gemak. Gebouwd door <a href="https://www.code-lieshout.nl" class="text-cta hover:text-white transition-colors duration-200 cursor-pointer">Code Lieshout</a>.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => { menuBtn.classList.toggle('menu-open'); mobileMenu.classList.toggle('hidden'); mobileMenu.classList.toggle('flex'); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ons DNA - Catering-Gemak</title>
+    <meta name="description" content="Klassiekers met een twist. Lokaal, puur en klantgericht — dat is het DNA van Catering-Gemak uit Ravenstein.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&family=Playfair+Display+SC:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#DC2626', 'primary-light': '#F87171', cta: '#CA8A04', 'cta-hover': '#A16207',
+                        bg: '#FEF2F2', 'bg-dark': '#450A0A', 'bg-warm': '#FDF2E9',
+                    },
+                    fontFamily: { display: ['Playfair Display SC', 'serif'], sans: ['Karla', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .scroll-reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
+        .hamburger-line { transition: all 0.3s ease; }
+        .menu-open .hamburger-line:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .menu-open .hamburger-line:nth-child(2) { opacity: 0; }
+        .menu-open .hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+        @media (prefers-reduced-motion: reduce) { .scroll-reveal { opacity: 1; transform: none; transition: none; } }
+    </style>
+</head>
+<body class="font-sans bg-bg text-bg-dark">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
+            <a href="index.html" class="flex items-center gap-3"><img src="images/logo.png" alt="Catering-Gemak logo" class="h-10 md:h-14 w-auto"></a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="text-bg-dark font-semibold hover:text-primary transition-colors duration-200 cursor-pointer">Home</a>
+                <a href="ons-dna.html" class="text-primary font-semibold cursor-pointer">Ons DNA</a>
+                <a href="menu.html" class="text-bg-dark font-semibold hover:text-primary transition-colors duration-200 cursor-pointer">Menu</a>
+                <a href="contact.html" class="text-bg-dark font-semibold hover:text-primary transition-colors duration-200 cursor-pointer">Contact</a>
+                <a href="contact.html" class="bg-cta text-white px-6 py-2.5 rounded-full font-bold cursor-pointer hover:bg-cta-hover transition-all duration-200">Offerte aanvragen</a>
+            </div>
+            <button id="menuBtn" class="md:hidden flex flex-col gap-1.5 cursor-pointer p-2 min-h-[44px] min-w-[44px] items-center justify-center" aria-label="Menu">
+                <span class="hamburger-line block w-6 h-0.5 bg-bg-dark"></span>
+                <span class="hamburger-line block w-6 h-0.5 bg-bg-dark"></span>
+                <span class="hamburger-line block w-6 h-0.5 bg-bg-dark"></span>
+            </button>
+        </div>
+    </nav>
+    <div id="mobileMenu" class="fixed inset-0 z-40 bg-white hidden flex-col items-center justify-center gap-8">
+        <a href="index.html" class="text-2xl font-display font-bold text-bg-dark cursor-pointer">Home</a>
+        <a href="ons-dna.html" class="text-2xl font-display font-bold text-primary cursor-pointer">Ons DNA</a>
+        <a href="menu.html" class="text-2xl font-display font-bold text-bg-dark cursor-pointer">Menu</a>
+        <a href="contact.html" class="text-2xl font-display font-bold text-bg-dark cursor-pointer">Contact</a>
+        <a href="contact.html" class="bg-cta text-white px-8 py-3 rounded-full text-xl font-bold cursor-pointer">Offerte aanvragen</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="pt-24 md:pt-32 pb-16 md:pb-24">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <h1 class="font-display text-4xl md:text-6xl font-bold mb-6">Ons DNA</h1>
+            <p class="text-xl md:text-2xl text-bg-dark/70 max-w-3xl">Iedere dag iets bijzonders doen, soms met hele simpele, kwalitatieve ingrediënten — dat is de truc.</p>
+        </div>
+    </section>
+
+    <!-- Klassiekers met een twist -->
+    <section class="py-16 md:py-24 bg-white scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
+            <div class="rounded-3xl overflow-hidden shadow-2xl">
+                <img src="images/food.jpg" alt="Vers bereid eten" class="w-full aspect-[4/3] object-cover" loading="lazy">
+            </div>
+            <div>
+                <div class="inline-block bg-primary/10 text-primary px-4 py-1 rounded-full text-sm font-bold mb-4">Klassiekers met een twist</div>
+                <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">Trends volgen, tradities behouden</h2>
+                <p class="text-lg leading-relaxed mb-4">Catering-Gemak volgt de trends en ontwikkelingen op de voet. Gezond, nieuwe streekproducten, eerlijk en heerlijk, vegetarische keuken, E-nummer vrije producten, lokaal en regionaal zijn allemaal zaken waar wij dagelijks mee bezig zijn.</p>
+                <p class="text-lg leading-relaxed">Klassiekers blijven behouden maar krijgen een eigentijdse draai. Genieten van je eten, dat is helemaal van nu en daar gaan wij dan mee aan de slag.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lokaal en puur -->
+    <section class="py-16 md:py-24 scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1">
+                <div class="inline-block bg-cta/10 text-cta px-4 py-1 rounded-full text-sm font-bold mb-4">Lokaal en puur</div>
+                <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">Echt koken in eigen keuken</h2>
+                <p class="text-lg leading-relaxed mb-4">Lokaal, puur, groen en biologisch zijn geen trend — het is een blijvende overtuiging. Het besef groeit dat je bent wat je eet. We zijn verantwoordelijk voor de wereld waar we in leven.</p>
+                <p class="text-lg leading-relaxed">Catering-Gemak kookt nog echt in eigen keuken. Daardoor niet afhankelijk van wat grote producenten en/of groothandels willen verkopen. Het zijn de leveranciers die ons informeren over de seizoenen, aanbod op de markt en innovaties.</p>
+            </div>
+            <div class="order-1 md:order-2 rounded-3xl overflow-hidden shadow-2xl">
+                <img src="images/soup.jpg" alt="Huisgemaakte soep" class="w-full aspect-[4/3] object-cover" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Klantgericht -->
+    <section class="py-16 md:py-24 bg-white scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
+            <div class="rounded-3xl overflow-hidden shadow-2xl">
+                <img src="images/bbq.jpg" alt="BBQ op locatie" class="w-full aspect-[4/3] object-cover" loading="lazy">
+            </div>
+            <div>
+                <div class="inline-block bg-primary/10 text-primary px-4 py-1 rounded-full text-sm font-bold mb-4">Klantgerichte oplossingen</div>
+                <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">Hospitality als uitgangspunt</h2>
+                <p class="text-lg leading-relaxed">Catering-Gemak heeft, zoals van een klein bedrijf mag worden verwacht, een platte organisatie. Deze structuur stimuleert de betrokkenheid van de werknemers en bevordert de snelheid waarmee klantgerichte oplossingen kunnen worden doorgevoerd. Vanuit de hospitality gedachte zoeken we naar een oplossing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 md:py-24 bg-primary text-white text-center">
+        <div class="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
+            <h2 class="font-display text-3xl md:text-5xl font-bold mb-6">Proef het zelf</h2>
+            <p class="text-xl mb-10 opacity-90">Benieuwd wat Catering-Gemak voor u kan betekenen? Neem vrijblijvend contact op.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="tel:0620380959" class="bg-cta text-white px-8 py-4 rounded-full text-lg font-bold cursor-pointer hover:bg-cta-hover transition-all duration-200 inline-block">Bel 06-20380959</a>
+                <a href="contact.html" class="bg-white text-primary px-8 py-4 rounded-full text-lg font-bold cursor-pointer hover:bg-gray-100 transition-all duration-200 inline-block">Stuur een bericht</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-bg-dark text-white py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-12">
+                <div>
+                    <img src="images/logo.png" alt="Catering-Gemak" class="h-12 mb-4 brightness-0 invert">
+                    <p class="text-white/70">Klassiekers met een twist. 7 dagen per week bezorgd.</p>
+                </div>
+                <div>
+                    <h3 class="font-display text-lg font-bold mb-4 text-cta">Navigatie</h3>
+                    <ul class="space-y-2 text-white/70">
+                        <li><a href="index.html" class="hover:text-white transition-colors duration-200 cursor-pointer">Home</a></li>
+                        <li><a href="ons-dna.html" class="hover:text-white transition-colors duration-200 cursor-pointer">Ons DNA</a></li>
+                        <li><a href="menu.html" class="hover:text-white transition-colors duration-200 cursor-pointer">Menu</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors duration-200 cursor-pointer">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-display text-lg font-bold mb-4 text-cta">Contact</h3>
+                    <ul class="space-y-2 text-white/70">
+                        <li><a href="tel:0620380959" class="hover:text-white transition-colors duration-200 cursor-pointer">06-20380959</a></li>
+                        <li><a href="mailto:info@catering-gemak.nl" class="hover:text-white transition-colors duration-200 cursor-pointer">info@catering-gemak.nl</a></li>
+                        <li>De Hammen 13, 5371 MK Ravenstein</li>
+                        <li>KvK: 64827011</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-white/10 text-center text-white/50 text-sm">
+                <p>&copy; 2026 Catering-Gemak. Gebouwd door <a href="https://www.code-lieshout.nl" class="text-cta hover:text-white transition-colors duration-200 cursor-pointer">Code Lieshout</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => { menuBtn.classList.toggle('menu-open'); mobileMenu.classList.toggle('hidden'); mobileMenu.classList.toggle('flex'); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
